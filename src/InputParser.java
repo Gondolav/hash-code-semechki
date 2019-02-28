@@ -9,9 +9,9 @@ import java.util.stream.Stream;
 
 public class InputParser {
 
-    public static Tuple<LinkedList<Photo>, LinkedList<Photo>> importPhotos(String filePath) {
-        LinkedList<Photo> verticalPhotos = new LinkedList<>();
-        LinkedList<Photo> horizontalPhotos = new LinkedList<>();
+    public static Tuple<LinkedList<HorizontalPhoto>, LinkedList<VerticalPhoto>> importPhotos(String filePath) {
+        LinkedList<VerticalPhoto> verticalPhotos = new LinkedList<>();
+        LinkedList<HorizontalPhoto> horizontalPhotos = new LinkedList<>();
         AtomicInteger id = new AtomicInteger();
         //read file into stream, try-with-resources
         try (Stream<String> stream = Files.lines(Paths.get(filePath))) {
@@ -30,6 +30,6 @@ public class InputParser {
             e.printStackTrace();
         }
 
-        return new Tuple<LinkedList<Photo>, LinkedList<Photo>>(horizontalPhotos, verticalPhotos);
+        return new Tuple<>(horizontalPhotos, verticalPhotos);
     }
 }
