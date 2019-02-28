@@ -43,4 +43,18 @@ public class Matcher {
 
         return bestSlide;
     }
+
+    public Slide getFirst() {
+        for (int i = N-1; i >= 0; i--) {
+            Set<Slide> slides = slideSet.get(i);
+            if (!slides.isEmpty()) {
+                Slide next = slides.iterator().next();
+                next.use();
+                slides.remove(next);
+                return next;
+            }
+        }
+
+        return null;
+    }
 }

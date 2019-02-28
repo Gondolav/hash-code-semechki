@@ -1,6 +1,5 @@
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Main {
@@ -25,8 +24,8 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        while (true) {
-            System.out.print("Choose dataset [a, b, c, d, e] or build output file [out]: ");
+        do {
+            System.out.print("Choose dataset [a, b, c, d, e]: ");
             Scanner scanner = new Scanner(System.in);
             String filenameCategory = scanner.nextLine();
 
@@ -34,15 +33,12 @@ public class Main {
                 return;
             }
 
-            Slideshow slideshow = new Slideshow();
 
-            if (filenameCategory.equals("out")) {
-                slideshow.buildOutputFile();
-            } else {
-                List<Photo> photos = InputParser.importPhotos(extractFilenameFromCategory(filenameCategory));
+            Tuple<LinkedList<HorizontalPhoto>, LinkedList<VerticalPhoto>> photos = InputParser.importPhotos(extractFilenameFromCategory(filenameCategory));
 
-                System.out.println(photos);
-            }
-        }
+            Slideshow slideshow = new Slideshow(photos);
+
+            slideshow.buildOutputFile(filenameCategory);
+        } while (true);
     }
 }

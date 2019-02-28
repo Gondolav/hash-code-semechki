@@ -5,6 +5,7 @@ import java.util.TreeSet;
 abstract public class Photo {
     private int id;
     private final Set<String> tags;
+    private boolean isUsed = false;
 
     Photo(int id, List<String> tags) {
         this.id = id;
@@ -30,6 +31,14 @@ abstract public class Photo {
         return copies.size();
     }
 
+    public boolean isUsed() {
+        return isUsed;
+    }
+
+    public void use() {
+        isUsed = true;
+    }
+
     @Override
     public String toString() {
         return id + ": " + tags.toString();
@@ -45,6 +54,10 @@ abstract public class Photo {
 
         Photo photo = (Photo) o;
         return photo.getId() == id && photo.getTags().equals(tags);
+    }
+
+    public boolean equals(Photo p) {
+        return p.getId() == id;
     }
 
     @Override
