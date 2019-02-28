@@ -1,5 +1,4 @@
 import java.util.Set;
-import java.util.TreeSet;
 
 public class VerticalSlide extends Slide {
 
@@ -7,6 +6,7 @@ public class VerticalSlide extends Slide {
     private VerticalPhoto rightPhoto;
 
     public VerticalSlide(VerticalPhoto leftPhoto, VerticalPhoto rightPhoto) {
+        super();
         this.leftPhoto = leftPhoto;
         this.rightPhoto = rightPhoto;
     }

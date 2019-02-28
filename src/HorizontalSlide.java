@@ -5,6 +5,7 @@ public class HorizontalSlide extends Slide {
     private HorizontalPhoto photo;
 
     public HorizontalSlide(HorizontalPhoto photo) {
+        super();
         this.photo = photo;
     }
 

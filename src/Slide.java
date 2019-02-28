@@ -3,6 +3,12 @@ import java.util.TreeSet;
 
 public abstract class Slide {
     public abstract Set<String> getTags();
+    private int tagsNum;
+
+    public Slide() {
+        tagsNum = getTags().size();
+    }
+
     public int scoreWith(Slide that) {
         return Math.min(this.commonTags(that), Math.min(this.tagsNotIn(that), that.tagsNotIn(this)));
     }
@@ -17,5 +23,9 @@ public abstract class Slide {
         Set<String> copies = new TreeSet<>(getTags());
         copies.retainAll(that.getTags());
         return copies.size();
+    }
+
+    public int getTagsNum() {
+        return tagsNum;
     }
 }
