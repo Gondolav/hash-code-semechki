@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,27 +9,40 @@ public class Main {
 
     private static String extractFilenameFromCategory(String category) {
         switch (category) {
-            case "a": return FILENAMES[0];
-            case "b": return FILENAMES[1];
-            case "c": return FILENAMES[2];
-            case "d": return FILENAMES[3];
-            case "e": return FILENAMES[4];
+            case "a":
+                return FILENAMES[0];
+            case "b":
+                return FILENAMES[1];
+            case "c":
+                return FILENAMES[2];
+            case "d":
+                return FILENAMES[3];
+            case "e":
+                return FILENAMES[4];
         }
 
         return null;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         while (true) {
-            System.out.print("Choose dataset [a, b, c, d, e]: ");
+            System.out.print("Choose dataset [a, b, c, d, e] or build output file [out]: ");
             Scanner scanner = new Scanner(System.in);
             String filenameCategory = scanner.nextLine();
 
-            if (filenameCategory.equals("exit")) break;
+            if (filenameCategory.equals("exit")) {
+                return;
+            }
 
-            List<Photo> photos = InputParser.importPhotos(extractFilenameFromCategory(filenameCategory));
+            Slideshow slideshow = new Slideshow();
 
-            System.out.println(photos);
+            if (filenameCategory.equals("out")) {
+                slideshow.buildOutputFile();
+            } else {
+                List<Photo> photos = InputParser.importPhotos(extractFilenameFromCategory(filenameCategory));
+
+                System.out.println(photos);
+            }
         }
     }
 }

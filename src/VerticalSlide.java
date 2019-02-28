@@ -1,5 +1,4 @@
 import java.util.Set;
-import java.util.TreeSet;
 
 public class VerticalSlide extends Slide {
 
@@ -7,6 +6,7 @@ public class VerticalSlide extends Slide {
     private VerticalPhoto rightPhoto;
 
     public VerticalSlide(VerticalPhoto leftPhoto, VerticalPhoto rightPhoto) {
+        super();
         this.leftPhoto = leftPhoto;
         this.rightPhoto = rightPhoto;
     }
@@ -16,6 +16,11 @@ public class VerticalSlide extends Slide {
         Set<String> union = leftPhoto.getTags();
         union.addAll(rightPhoto.getTags());
         return union;
+    }
+
+    @Override
+    public String getId() {
+        return leftPhoto.getId() + " " + rightPhoto.getId();
     }
 
     public VerticalPhoto getLeftPhoto() {
