@@ -3,9 +3,11 @@ import java.util.Set;
 import java.util.TreeSet;
 
 abstract public class Photo {
+    private int id;
     private final Set<String> tags;
 
-    Photo(List<String> tags) {
+    Photo(int id, List<String> tags) {
+        this.id = id;
         this.tags = new TreeSet<>();
         this.tags.addAll(tags);
     }
