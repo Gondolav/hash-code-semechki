@@ -18,6 +18,11 @@ public class VerticalSlide extends Slide {
         return union;
     }
 
+    @Override
+    public String getId() {
+        return leftPhoto.getId() + " " + rightPhoto.getId();
+    }
+
     public VerticalPhoto getLeftPhoto() {
         return leftPhoto;
     }
