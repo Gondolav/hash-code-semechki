@@ -12,6 +12,11 @@ public class HorizontalSlide extends Slide {
         return photo.getTags();
     }
 
+    @Override
+    public String getId() {
+        return String.valueOf(photo.getId());
+    }
+
     public HorizontalPhoto getPhoto() {
         return photo;
     }
