@@ -9,18 +9,19 @@ import java.util.stream.Stream;
 
 public class InputParser {
 
-    public static LinkedList<Photo> importPhotos(String filePath) {
-        LinkedList<Photo> photos = new LinkedList<>();
+    public static Tuple<LinkedList<Photo>, LinkedList<Photo>> importPhotos(String filePath) {
+        LinkedList<Photo> verticalPhotos = new LinkedList<>();
+        LinkedList<Photo> horizontalPhotos = new LinkedList<>();
         AtomicInteger id = new AtomicInteger();
         //read file into stream, try-with-resources
         try (Stream<String> stream = Files.lines(Paths.get(filePath))) {
             stream.skip(1).forEach(line -> {
                 List<String> splitStr = Arrays.asList(line.trim().split("\\s+"));
                 if (splitStr.get(0).equals("V")) {
-                    photos.add(new VerticalPhoto(id.getAndIncrement(),
+                    verticalPhotos.add(new VerticalPhoto(id.getAndIncrement(),
                                                     splitStr.subList(2, splitStr.size())));
                 } else {
-                    photos.add(new HorizontalPhoto(id.getAndIncrement(),
+                    horizontalPhotos.add(new HorizontalPhoto(id.getAndIncrement(),
                                                     splitStr.subList(2, splitStr.size())));
                 }
             });
@@ -29,6 +30,6 @@ public class InputParser {
             e.printStackTrace();
         }
 
-        return photos;
+        return new Tuple<LinkedList<Photo>, LinkedList<Photo>>(horizontalPhotos, verticalPhotos);
     }
 }
