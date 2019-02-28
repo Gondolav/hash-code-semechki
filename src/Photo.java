@@ -47,6 +47,10 @@ abstract public class Photo {
         return photo.getId() == id && photo.getTags().equals(tags);
     }
 
+    public boolean equals(Photo p) {
+        return p.getId() == id;
+    }
+
     @Override
     public int hashCode() {
         int result = 17;
