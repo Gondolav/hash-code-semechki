@@ -1,14 +1,13 @@
-import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 abstract public class Photo {
     private final Set<String> tags;
 
-    Photo(String... tags) {
+    Photo(List<String> tags) {
         this.tags = new TreeSet<>();
-
-        Collections.addAll(this.tags, tags);
+        this.tags.addAll(tags);
     }
 
     public Set<String> getTags() {
