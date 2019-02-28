@@ -4,11 +4,13 @@ public class VerticalSlide extends Slide {
 
     private VerticalPhoto leftPhoto;
     private VerticalPhoto rightPhoto;
+    private int tagsNum;
 
     public VerticalSlide(VerticalPhoto leftPhoto, VerticalPhoto rightPhoto) {
         super();
         this.leftPhoto = leftPhoto;
         this.rightPhoto = rightPhoto;
+        tagsNum = getTags().size();
     }
 
     @Override
@@ -29,5 +31,9 @@ public class VerticalSlide extends Slide {
 
     public VerticalPhoto getRightPhoto() {
         return rightPhoto;
+    }
+
+    public int getTagsNum() {
+        return tagsNum;
     }
 }
