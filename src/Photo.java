@@ -32,7 +32,7 @@ abstract public class Photo {
 
     @Override
     public String toString() {
-        return tags.toString();
+        return id + tags.toString();
     }
 
     @Override
