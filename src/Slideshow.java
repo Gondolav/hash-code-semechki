@@ -30,26 +30,28 @@ public class Slideshow {
         for (HorizontalPhoto photo: horizontals) {
             matcher.insert(new HorizontalSlide(photo));
         }
-
         for (VerticalPhoto photo1: verticals) {
-            if (verticals.size() > 1) {
-                int maxTags = -1;
-                VerticalSlide bestSlide = null;
-                for (VerticalPhoto photo2 : verticals) {
-                    if (!photo1.equals(photo2)) {
-                        VerticalSlide slide = new VerticalSlide(photo1, photo2);
 
-                        int tagsNum = slide.getTagsNum();
-                        if (tagsNum > maxTags) {
-                            maxTags = tagsNum;
-                            bestSlide = slide;
+            if (!photo1.isUsed()) {
+                if (verticals.size() > 1) {
+                    int maxTags = -1;
+                    VerticalSlide bestSlide = null;
+                    for (VerticalPhoto photo2 : verticals) {
+
+                        if (!photo2.isUsed() && !photo1.equals(photo2)) {
+                            VerticalSlide slide = new VerticalSlide(photo1, photo2);
+
+                            int tagsNum = slide.getTagsNum();
+                            if (tagsNum > maxTags) {
+                                maxTags = tagsNum;
+                                bestSlide = slide;
+                            }
                         }
                     }
-                }
 
-                verticals.remove(bestSlide.getRightPhoto());
-                verticals.remove(bestSlide.getLeftPhoto());
-                matcher.insert(bestSlide);
+                    bestSlide.use();
+                    matcher.insert(bestSlide);
+                }
             }
         }
 

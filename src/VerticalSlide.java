@@ -36,4 +36,10 @@ public class VerticalSlide extends Slide {
     public int getTagsNum() {
         return tagsNum;
     }
+
+    @Override
+    public void use() {
+        leftPhoto.use();
+        rightPhoto.use();
+    }
 }

@@ -23,4 +23,6 @@ public abstract class Slide {
     abstract public String getId();
 
     abstract public int getTagsNum();
+
+    abstract public void use();
 }

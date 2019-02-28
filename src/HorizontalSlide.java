@@ -27,4 +27,9 @@ public class HorizontalSlide extends Slide {
     public int getTagsNum() {
         return tagsNum;
     }
+
+    @Override
+    public void use() {
+        photo.use();
+    }
 }

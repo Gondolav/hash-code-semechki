@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Main {
@@ -32,7 +33,10 @@ public class Main {
                 return;
             }
 
-            Slideshow slideshow = new Slideshow(InputParser.importPhotos(extractFilenameFromCategory(filenameCategory)));
+
+            Tuple<LinkedList<HorizontalPhoto>, LinkedList<VerticalPhoto>> photos = InputParser.importPhotos(extractFilenameFromCategory(filenameCategory));
+
+            Slideshow slideshow = new Slideshow(photos);
 
             slideshow.buildOutputFile(filenameCategory);
         } while (true);

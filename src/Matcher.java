@@ -48,7 +48,10 @@ public class Matcher {
         for (int i = N-1; i >= 0; i--) {
             Set<Slide> slides = slideSet.get(i);
             if (!slides.isEmpty()) {
-                return slides.iterator().next();
+                Slide next = slides.iterator().next();
+                next.use();
+                slides.remove(next);
+                return next;
             }
         }
 

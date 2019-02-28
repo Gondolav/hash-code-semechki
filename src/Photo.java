@@ -5,6 +5,7 @@ import java.util.TreeSet;
 abstract public class Photo {
     private int id;
     private final Set<String> tags;
+    private boolean isUsed = false;
 
     Photo(int id, List<String> tags) {
         this.id = id;
@@ -28,6 +29,14 @@ abstract public class Photo {
         Set<String> copies = new TreeSet<>(tags);
         copies.retainAll(that.getTags());
         return copies.size();
+    }
+
+    public boolean isUsed() {
+        return isUsed;
+    }
+
+    public void use() {
+        isUsed = true;
     }
 
     @Override
