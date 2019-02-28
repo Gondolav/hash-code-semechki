@@ -15,7 +15,7 @@ public class InputParser {
         try (Stream<String> stream = Files.lines(Paths.get(filePath))) {
             stream.skip(2).forEach(line -> {
                 List<String> splitStr = Arrays.asList(line.trim().split("\\s+"));
-                if (splitStr.get(0) == "V") {
+                if (splitStr.get(0).equals("V")) {
                     photos.add(new VerticalPhoto(splitStr.subList(2, splitStr.size())));
                 } else {
                     photos.add(new HorizontalPhoto(splitStr.subList(2, splitStr.size())));
@@ -25,20 +25,5 @@ public class InputParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        int numberOfPhotos = Integer.parseInt(input.get(0));
-        input.remove(0);
-
-        LinkedList<Photo> photos = new LinkedList<>();
-        for (String line : input) {
-            List<String> splitStr = Arrays.asList(line.trim().split("\\s+"));
-
-            if (splitStr.get(0) == "V") {
-                photos.add(new VerticalPhoto(splitStr.subList(2, splitStr.size())));
-            } else {
-                photos.add(new HorizontalPhoto(splitStr.subList(2, splitStr.size())));
-            }
-        }
-
     }
 }
