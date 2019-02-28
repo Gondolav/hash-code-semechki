@@ -12,6 +12,8 @@ abstract public class Photo {
         this.tags.addAll(tags);
     }
 
+    public int getId() { return id; }
+
     public Set<String> getTags() {
         return new TreeSet<>(tags);
     }
@@ -31,5 +33,25 @@ abstract public class Photo {
     @Override
     public String toString() {
         return tags.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (o == this) return true;
+        if (!(o instanceof Photo)) {
+            return false;
+        }
+
+        Photo photo = (Photo) o;
+        return photo.getId() == id && photo.getTags().equals(tags);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + id;
+        result = 31 * result + tags.hashCode();
+        return result;
     }
 }
