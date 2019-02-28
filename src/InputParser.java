@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public class InputParser {
 
-    public static void importPhotos(String filePath) {
+    public static List<Photo> importPhotos(String filePath) {
         LinkedList<Photo> photos = new LinkedList<>();
 
         //read file into stream, try-with-resources
@@ -25,5 +25,7 @@ public class InputParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return photos;
     }
 }
